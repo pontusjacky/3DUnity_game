@@ -10,20 +10,26 @@ public class SettingPanel : PanelBase
 
     void Start()
     {
-        var setting = SettingsManager.Instance;
-        volumeSlider.value = setting.MasterVolume;
-        qualityDropdown.value = setting.GraphicsQuality;
+        // var setting = SettingsManager.Instance;
+        // volumeSlider.value = setting.MasterVolume;
+        // qualityDropdown.value = setting.GraphicsQuality;
 
-        volumeSlider.onValueChanged.AddListener(v => setting.SetMasterVolume(v));
-        qualityDropdown.onValueChanged.AddListener(i => setting.SetQuality(i));
+        // volumeSlider.onValueChanged.AddListener(v => setting.SetMasterVolume(v));
+        // qualityDropdown.onValueChanged.AddListener(i => setting.SetQuality(i));
         closeButton.onClick.AddListener(() => Close());
     }
 
     public override void Open()
     {
         base.Open();
-        var setting = SettingsManager.Instance;
-        volumeSlider.value = setting.MasterVolume;
-        qualityDropdown.value = setting.GraphicsQuality;
+        // var setting = SettingsManager.Instance;
+        // volumeSlider.value = setting.MasterVolume;
+        // qualityDropdown.value = setting.GraphicsQuality;
+    }
+
+    public override void Close()
+    {
+        Debug.Log("candy close setting");
+        base.Close();
     }
 }

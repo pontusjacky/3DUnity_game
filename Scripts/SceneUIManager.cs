@@ -6,8 +6,10 @@ public class SceneUIManager : MonoBehaviour
     public Transform UIRoot;
     public Transform popupRoot;
     public PausePanel pausePanelPrefab;
+    public SettingPanel settingPanelPrefab;
 
     private PausePanel pausePanelInstance;
+    private SettingPanel settingPanelInstance;
     void Awake()
     {
         // 註冊自己到全域
@@ -28,9 +30,22 @@ public class SceneUIManager : MonoBehaviour
         {
             pausePanelInstance = Instantiate(pausePanelPrefab, UIRoot);
             pausePanelInstance.Open();
+            Debug.Log("candy open pause");
         }
 
         pausePanelInstance.Open();
+    }
+
+    public void OpenSetting()
+    {
+        if (settingPanelInstance == null)
+        {
+            settingPanelInstance = Instantiate(settingPanelPrefab, UIRoot);
+            settingPanelInstance.Open();
+            Debug.Log("candy open setting");
+        }
+
+        settingPanelInstance.Open();
     }
 
 }

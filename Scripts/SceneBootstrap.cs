@@ -4,15 +4,17 @@ using System.Collections;
 
 public class SceneBootstrap : MonoBehaviour
 {
-    // private IEnumerator Start()
-    // {
-    //     yield return SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
-    //     yield return null;
-    //     UIManager.Instance.ShowPanel(UIManager.Instance.mainMenuPanel);
-    //     // yield return SceneManager.LoadSceneAsync("mini_exercise1", LoadSceneMode.Additive);
-
-    //     SceneManager.UnloadSceneAsync("Bootstrap");
-    // }
+    public static SceneBootstrap Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     IEnumerator Start()
     {

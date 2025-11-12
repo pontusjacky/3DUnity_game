@@ -76,7 +76,18 @@ public class GameManager : MonoBehaviour
     // 回主選單：清掉所有 Level 場景並載入 MainMenu (single load)
     public void GoToMainMenu()
     {
-        StartCoroutine(GoToMainMenuRoutine());
+        // StartCoroutine(GoToMainMenuRoutine());
+        SceneLoader.Instance?.LoadScene("MainMenu");
+    }
+
+    public void GoToLevelSelect()
+    {
+        SceneLoader.Instance?.LoadScene("LevelSelect");
+    }
+    
+    public void GoToLevel(int i)
+    {
+        SceneLoader.Instance?.LoadScene("mini_exercise" + i);
     }
 
     IEnumerator LoadLevelRoutine(string levelSceneName)

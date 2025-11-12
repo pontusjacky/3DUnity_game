@@ -4,35 +4,40 @@ using UnityEngine.UI;
 public class LevelSelectPanel : PanelBase
 {
 
+    [Header("關卡數量")]
+    public int level_num;
     [Header("Button")]
     public Button settingsButton;
     public Button backButton;
+    public Button levelButtonPrefab;
+    [Header("關卡按鈕目錄")]
+    public Transform levelGrid;
+
+
  
+    protected override void Awake()
+    {
+        cg = GetComponent<CanvasGroup>();
+    }
 
     void Start()
     {
-        backButton.onClick.AddListener(() => back());
-        settingsButton.onClick.AddListener(() =>
+        for( int i = 0; i < level_num; i++)
         {
-            var popup = PopupManager.Instance;
-            popup.ShowConfirm("開啟設定？", () => Debug.Log("確定開啟設定"));
-        });
+            int index = i + 1;
+            var levelButton = Instantiate(levelButtonPrefab, levelGrid);
+            levelButton.onClick.AddListener(() => goToLevel(index));
+        }
+            
+        backButton.onClick.AddListener(() => back());
     }
-
-    public override void Open()
-    {
-        base.Open();
-        Time.timeScale = 0f;
-    }
-
-    public override void Close()
-    {
-        base.Close();
-        Time.timeScale = 1f;
-    }
-
     public void back()
     {
-        GameManager.Instance.Resume();
+        GameManager.Instance.GoToMainMenu();
+    }
+
+    public void goToLevel(int i)
+    {
+        GameManager.Instance.GoToLevel(i);
     }
 }
